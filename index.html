@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Список студентов</title>
+  <link rel="stylesheet" href="normalize.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="main.js"></script>
+</head>
+
+<body>
+  <!-- Этап 1. Создал верстку элементов, которые будут статичны (неизменны).  -->
+  <main>
+    <div class="container">
+      <section class="section__block--top">
+        <h2>Создания студента</h2>
+        <form action="#" method="post" class="form" id="form">
+          <div class="form-group form__sublock--label">
+            <label for="name">Имя*:</label>
+            <span id="error-name" class="error-message"></span>
+            <input class="form-control input-lg" type="text" name="name" id="name" placeholder="Введите имя" required>
+          </div>
+          <div class="form-group form__sublock--label">
+            <label for="surname">Фамилия*:</label>
+            <span id="error-surname" class="error-message"></span>
+            <input class="form-control input-lg" type="text" name="surname" id="surname" placeholder="Введите фамилию" required>
+          </div>
+          <div class="form-group form__sublock--label">
+            <label for="middlename">Отчество:</label>
+            <input class="form-control input-lg" type="text" name="middle name" id="middleName" placeholder="Введите отчество">
+          </div>
+          <div class="form-group form__sublock--label">
+            <label for="birthdate">Дата рождения*:</label>
+            <input class="form-control input-lg" type="date" name="birthdate" id="birthdate"  min="1900-01-01" required>
+          </div>
+          <div class="form-group form__sublock--label">
+            <label for="yearEducation">Год начала обучения*:</label>
+            <input class="form-control input-lg" type="number" id="yearEducation" placeholder="Введите год начала обучения" min="2000" required>
+          </div>
+          <div class="form-group form__sublock--label">
+            <label for="faculty">Факультет*:</label>
+            <span id="error-faculty" class="error-message"></span>
+            <input class="form-control input-lg" type="text" id="faculty" placeholder="Введите факультет" required>
+          </div>
+          <button class="btn btn-default btn-primary btn-lg btn__create" id="button-form" type="submit">
+            Добавить студента
+          </button>
+        </form>
+      </section>
+      <section class="section__block--bottom">
+        <h2>Список студентов</h2>
+        <form action="#" method="post" id="filter__form">
+          <h3 class="filter__h3">Фильтрация</h3>
+          <div class="form-group">
+            <label for="filterInputName" class="filter__label">Поиск ФИО</label>
+            <input type="text" class="form-control" id="filterInputName" placeholder="Искать по ФИО">
+          </div>
+          <div class="form-group">
+            <label for="filterInputFaculty" class="filter__label">Поиск факультета</label>
+            <input type="text" class="form-control" id="filterInputFaculty" placeholder="Введите название факультета">
+          </div>
+          <div class="form-group filter__text--invalid">
+            <label for="filterInputYearEducationFirst" class="filter__label">Поиск по году начала обучения</label>
+            <span class="text-error-filter control-label"></span>
+            <input type="number" class="form-control" id="filterInputYearEducationFirst" placeholder="Введите год начала обучения (точное совпадение)" min="2000">
+          </div>
+          <div class="form-group filter__text--invalid">
+            <label for="filterInputYearEducationLast" class="filter__label">Поиск по году окончания обучения</label>
+            <span class="text-error-filter control-label"></span>
+            <input type="number" class="form-control" id="filterInputYearEducationLast" placeholder="Введите год окончания обучения (точное совпадение)" min="2004">
+          </div>
+          <button type="reset" class="btn btn-default btn-danger filter__btn--remove">Сбросить</button>
+        </form>
+        <ul class="list-reset sort__list">
+          <li class="sort__item">
+            <button class="sort__btn btn-info">Сортировка по фамилии</button>
+          </li>
+          <li class="sort__item">
+            <button class="sort__btn btn-info">Сортировка по факультету</button>
+          </li>
+          <li class="sort__item">
+            <button class="sort__btn btn-info">Сортировка по возрасту</button>
+          </li>
+          <li class="sort__item">
+            <button class="sort__btn btn-info">Сортировка по году обучения</button>
+          </li>
+          <li class="sort__item">
+            <button class="sort__btn--reset btn-danger">Сбросить сортировку</button>
+          </li>
+        </ul>
+        <ul class="list list-reset title__item title__list">
+          <li class="item item-first">Ф.И.О</li>
+          <li class="item item-first">Факультет</li>
+          <li class="item item-first">Дата рождения</li>
+          <li class="item item-first">Годы обучения</li>
+        </ul>
+        <ul class="list list-reset" id="list_add_students">
+        </ul>
+      </section>
+    </div>
+  </main>
+</body>
+
+</html>

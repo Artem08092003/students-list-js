@@ -1,0 +1,156 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+body {
+  min-width: 769px;
+  background-image: url(img/fon_studentcard.png);
+  background-size: cover;
+}
+
+main {
+  padding: 30px 0;
+}
+
+form {
+  padding: 20px;
+  border: 1px solid rgb(98, 98, 98);
+  border-radius: 20px;
+}
+
+label {
+  font-size: 18px;
+}
+
+.list-group-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.list-reset {
+  list-style-type: none;
+  padding: 0;
+}
+
+h2 {
+  margin-bottom: 30px;
+}
+
+#filter__form {
+  margin-bottom: 20px;
+}
+
+.filter__h3 {
+  margin: 0;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgb(161, 161, 161);
+  font-size: 20px;
+  color: darkblue;
+}
+
+.filter__label {
+  font-size: 16px;
+}
+
+.filter__btn--remove {
+  padding: 6px 20px;
+  font-size: 13px;
+}
+
+.sort__list {
+  display: flex;
+  gap: 20px;
+}
+
+.sort__btn,
+.sort__btn--reset {
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.sort__btn:focus {
+  outline: none;
+  border-color: none;
+}
+
+.sort__btn:focus-visible {
+  outline: 1px solid black;
+}
+
+.sort__btn:hover {
+  outline: none;
+}
+
+.sort__btn:active {
+  outline: none;
+}
+
+.title__item {
+  margin-bottom: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.title__list {
+  display: flex;
+  width: 100%;
+  min-width: 600px;
+}
+
+.title__list .item {
+  padding: 5px;
+  width: calc(100% / 4);
+}
+
+.title__list .item:nth-child(2n - 1) {
+  background-color: rgb(232, 232, 232);
+}
+
+.title__list .item-first {
+  font-size: large;
+  font-weight: 700;
+}
+
+.title__list .item-first:not(:last-child) {
+  border-right: 1px solid black;
+}
+
+.item__not-first {
+  min-width: 600px;
+}
+
+.list__not-first .item-not-first {
+  padding-top: 10px;
+  padding-bottom: 15px;
+  font-size: larger;
+  font-weight: 500;
+}
+
+.list__not-first .item-not-first:not(:last-child) {
+  border-right: 1px solid darkgray;
+}
+
+.item__not-first {
+  margin-bottom: 3px;
+  border: 1px solid slategray;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.item__not-first:last-child {
+  margin: 0;
+}
+
+.error-message {
+  color: red;
+  font-size: medium;
+  font-weight: 600;
+}
