@@ -69,6 +69,12 @@ h2 {
   gap: 20px;
 }
 
+.sort__btn[disabled],
+.sort__btn--reset[disabled] {
+  cursor: no-drop;
+  opacity: 0.4;
+}
+
 .sort__btn,
 .sort__btn--reset {
   padding: 5px 10px;

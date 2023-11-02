@@ -265,9 +265,6 @@
     inputSurname.value = "";
     inputMidlleName.value = "";
     inputBirthdate.value = "";
-
-    // Выводим массив студентов в консоль
-    console.log(studentsList);
   });
 
 
@@ -339,6 +336,9 @@
   const filterFaculty = document.getElementById("filterInputFaculty");
   const filterYearEducationfirst = document.getElementById("filterInputYearEducationFirst");
   const filterYearEducationLast = document.getElementById("filterInputYearEducationLast");
+
+  //Получаем элемент кнопка очистить поле фильтра
+  const filterBtnRemove = document.getElementById("filterResetBtn");
 
   // Получаем коллекцию элементов с классом "text-error-filter"
   const textErrorFilter = document.querySelectorAll(".text-error-filter");
@@ -422,16 +422,45 @@
       textInvalidFilter[1].classList.remove("has-error");
     }
 
+    // Проверяем, если все значения фильтров пустые
+    if (filterFaculty.value.trim() === "" && filterName.value.trim() === "" && filterYearEducationfirst.value === "" && filterYearEducationLast.value === "") {
+      // Если все значения пустые, то отключаем кнопку filterBtnRemove
+      filterBtnRemove.disabled = true;
+    } else {
+      // Если хотя бы одно значение не пустое, то включаем кнопку filterBtnRemove
+      filterBtnRemove.disabled = false;
+    }
+
     // Добавляем каждого студента из массива newArr в список listAddStudents
     newArr.forEach(student => {
       let studentItem = getStudentItem(student);
       listAddStudents.append(studentItem.item);
     });
-  }
+
+    return newArr;
+  };
 
   // Обработчик события input для формы фильтрации
-  filterForm.addEventListener('input', () => {
+  filterForm.addEventListener('input', (e) => {
     renderFilter(studentsList);
+
+    // Проверяем, если все значения фильтров пустые
+    if (filterFaculty.value.trim() === "" && filterName.value.trim() === "" && filterYearEducationfirst.value === "" && filterYearEducationLast.value === "") {
+      // Если все значения пустые, то включаем все кнопки сортировки
+      sortBtn.forEach(btn => {
+        btn.disabled = false;
+      });
+      sortBtnReset.disabled = false;
+
+       // Отменяем действие по умолчанию
+      e.preventDefault()
+    } else {
+      // Если хотя бы одно значение не пустое, то отключаем все кнопки сортировки
+      sortBtn.forEach(btn => {
+        btn.disabled = true;
+      });
+      sortBtnReset.disabled = true;
+    }
   });
 
   // Обработчик события reset для формы фильтрации
@@ -446,6 +475,15 @@
     textErrorFilter.forEach(error => {
       error.textContent = "";
     })
+
+    // Отключаем кнопку filterBtnRemove
+    filterBtnRemove.disabled = true;
+
+    // Включаем все кнопки сортировки
+    sortBtn.forEach(btn => {
+      btn.disabled = false;
+    })
+    sortBtnReset.disabled = false;
 
     // Сбрасываем сортировку списка студентов
     sortReset(studentsList);
