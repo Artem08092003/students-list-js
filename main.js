@@ -39,82 +39,131 @@
 
 
   // Этап 2. массив объектов студентов, в него объекты студентов.
-  const studentsList = [
-    {
-      name: 'Артем',
-      surname: 'Иванов',
-      middlename: 'Александрович',
-      birthdate: new Date("2000-01-01").toISOString().split("T")[0],
-      yearEducation: '2023',
-      faculty: 'МГУ',
-    },
-    {
-      name: 'Екатерина',
-      surname: 'Смирнова',
-      middlename: 'Алексеевна',
-      birthdate: new Date("2001-02-03").toISOString().split("T")[0],
-      yearEducation: '2022',
-      faculty: 'СПбГУ',
-    },
-    {
-      name: 'Иван',
-      surname: 'Петров',
-      middlename: 'Сергеевич',
-      birthdate: new Date("1999-05-10").toISOString().split("T")[0],
-      yearEducation: '2021',
-      faculty: 'МГТУ',
-    },
-    {
-      name: 'Александра',
-      surname: 'Соколова',
-      middlename: 'Дмитриевна',
-      birthdate: new Date("2002-07-15").toISOString().split("T")[0],
-      yearEducation: '2018',
-      faculty: 'СПбПУ',
-    },
-    {
-      name: 'Максим',
-      surname: 'Ковалев',
-      middlename: 'Андреевич',
-      birthdate: new Date("1998-12-20").toISOString().split("T")[0],
-      yearEducation: '2020',
-      faculty: 'МГУ',
-    },
-    {
-      name: 'Анна',
-      surname: 'Васильева',
-      middlename: 'Игоревна',
-      birthdate: new Date("2003-04-25").toISOString().split("T")[0],
-      yearEducation: '2023',
-      faculty: 'СПбГУ',
-    },
-    {
-      name: 'Дмитрий',
-      surname: 'Николаев',
-      middlename: 'Алексеевич',
-      birthdate: new Date("2000-09-05").toISOString().split("T")[0],
-      yearEducation: '2022',
-      faculty: 'МГТУ',
-    },
-    {
-      name: 'Елена',
-      surname: 'Козлова',
-      middlename: 'Ивановна',
-      birthdate: new Date("2001-11-12").toISOString().split("T")[0],
-      yearEducation: '2010',
-      faculty: 'СПбПУ',
-    }
-  ]
+  // данный метод вернет входящую строку в виде данных
+  function jsonToData(data) {
+    return JSON.parse(data);
+  };
 
+  // данный метод вернет данные из localstorage
+  function getCartData() {
+    return localStorage.getItem("students");
+  };
+
+  // данный метод вернет входящие данные в виде строки
+  function dataToJson(data) {
+    return JSON.stringify(data);
+  };
+
+  //данный метод запишет наши данные в localstorage
+  function setCartData(data) {
+    localStorage.setItem("students", data);
+  };
+
+  // функция для добавление новый индификатор для обьекта в массиве
+  function addObjId(array) {
+    for (let i = 0; i < array.length; i++) {
+      array[i].id = i + 1;
+    };
+
+    return array.length + 1;
+  };
+
+  // массив объектов студентов, в него объекты студентов.
+  const studentsList = jsonToData(getCartData()) || [{
+    id: null,
+    name: 'Артем',
+    surname: 'Иванов',
+    middlename: 'Александрович',
+    birthdate: new Date("2000-01-01").toISOString().split("T")[0],
+    yearEducation: '2023',
+    faculty: 'Гуманитарных наук',
+  },
+  {
+    id: null,
+    name: 'Екатерина',
+    surname: 'Смирнова',
+    middlename: 'Алексеевна',
+    birthdate: new Date("2001-02-03").toISOString().split("T")[0],
+    yearEducation: '2022',
+    faculty: 'Естественных наук',
+  },
+  {
+    id: null,
+    name: 'Иван',
+    surname: 'Петров',
+    middlename: 'Сергеевич',
+    birthdate: new Date("1999-05-10").toISOString().split("T")[0],
+    yearEducation: '2021',
+    faculty: 'Социальных наук',
+  },
+  {
+    id: null,
+    name: 'Александра',
+    surname: 'Соколова',
+    middlename: 'Дмитриевна',
+    birthdate: new Date("2002-07-15").toISOString().split("T")[0],
+    yearEducation: '2018',
+    faculty: 'Искусств',
+  },
+  {
+    id: null,
+    name: 'Максим',
+    surname: 'Ковалев',
+    middlename: 'Андреевич',
+    birthdate: new Date("1998-12-20").toISOString().split("T")[0],
+    yearEducation: '2020',
+    faculty: 'Инженерии',
+  },
+  {
+    id: null,
+    name: 'Анна',
+    surname: 'Васильева',
+    middlename: 'Игоревна',
+    birthdate: new Date("2003-04-25").toISOString().split("T")[0],
+    yearEducation: '2023',
+    faculty: 'Информационных технологий',
+  },
+  {
+    id: null,
+    name: 'Дмитрий',
+    surname: 'Николаев',
+    middlename: 'Алексеевич',
+    birthdate: new Date("2000-09-05").toISOString().split("T")[0],
+    yearEducation: '2022',
+    faculty: 'Экономики и бизнеса',
+  },
+  {
+    id: null,
+    name: 'Елена',
+    surname: 'Козлова',
+    middlename: 'Ивановна',
+    birthdate: new Date("2001-11-12").toISOString().split("T")[0],
+    yearEducation: '2010',
+    faculty: 'Медицины',
+  }];
+
+  addObjId(studentsList);
 
   // Флаг для определения столбца сортировки
   let sortColumnFlag = '';
   // Флаг для определения направления сортировки (по умолчанию - по возрастанию)
   let sortDirFlag = true;
 
+  // функция удаление элемента обьекта в массиве
+  function studentRemoveObj(array, student) {
+    const index = array.findIndex(item => item.id === student.id);
+    if (index >= 0) {
+      array.splice(index, 1);
+      // удаляет конкретный элемент в массиве при срабатывании функции
+      setCartData(dataToJson(array));
+    }
+  }
+
+
   // Этап 3. функцию вывода одного студента в таблицу, по аналогии с тем, как вы делали вывод одного дела в модуле 8. Функция должна вернуть html элемент с информацией и пользователе.У функции должен быть один аргумент - объект студента.
   function getStudentItem(studentObj) {
     const item = document.createElement("li");
+    const btnDeleteStudent = document.createElement("button");
     const listSub = document.createElement("ul");
     const itemSubName = document.createElement("li");
     const itemSubFaculty = document.createElement("li");
@@ -122,7 +171,8 @@
     const itemSubYearEducation = document.createElement("li");
 
     // Добавляем классы стилей к элементам
-    item.classList.add("item__not-first")
+    item.classList.add("item__not-first");
+    btnDeleteStudent.classList.add("btn__delete-student");
     listSub.classList.add("title__list", "list-reset", "list__not-first");
     itemSubName.classList.add("item", "item-not-first");
     itemSubBirthdate.classList.add("item", "item-not-first");
@@ -170,6 +220,7 @@
     listSub.append(itemSubBirthdate);
     listSub.append(itemSubYearEducation);
     item.append(listSub);
+    item.append(btnDeleteStudent);
 
     return {
       item,
@@ -177,7 +228,8 @@
       itemSubName,
       itemSubFaculty,
       itemSubBirthdate,
-      itemSubYearEducation
+      itemSubYearEducation,
+      btnDeleteStudent
     };
   }
 
@@ -209,6 +261,14 @@
       // Получаем элемент студента с помощью функции getStudentItem
       let studentItem = getStudentItem(student);
 
+      // кнопка удаления студента обработчик события
+      studentItem.btnDeleteStudent.addEventListener("click", function () {
+        if (confirm("Вы уверены?")) {
+          studentItem.item.remove();
+          studentRemoveObj(studentsArray, student);
+        }
+      });
+
       // Добавляем элемент студента в элемент listAddStudents
       listAddStudents.append(studentItem.item);
 
@@ -217,7 +277,7 @@
     });
   };
 
-  // Вызываем функцию renderStudentsTable, передавая ей массив студентов studentsList
+  // сразу отрисовываем таблицу тк есть встроенный элементы в массиве
   renderStudentsTable(studentsList);
 
 
@@ -246,6 +306,7 @@
 
     // Создаем объект с данными студента
     let obj = {
+      id: addObjId(studentsList),
       name: inputName.value.trim().charAt(0).toUpperCase() + inputName.value.trim().slice(1),
       surname: inputSurname.value.trim().charAt(0).toUpperCase() + inputSurname.value.trim().slice(1),
       middlename: inputMidlleName.value.trim().charAt(0).toUpperCase() + inputMidlleName.value.trim().slice(1),
@@ -265,6 +326,9 @@
     inputSurname.value = "";
     inputMidlleName.value = "";
     inputBirthdate.value = "";
+
+    //записываем массив в localstorage
+    setCartData(dataToJson(studentsList));
   });
 
 
@@ -313,11 +377,18 @@
 
     originalStudentsArray.forEach(student => {
       let studentItem = getStudentItem(student);
+
+      // кнопка удаления студента обработчик события
+      studentItem.btnDeleteStudent.addEventListener("click", function () {
+        if (confirm("Вы уверены?")) {
+          studentItem.item.remove();
+          studentRemoveObj(studentsArray, student);
+        }
+      });
+
       listAddStudents.append(studentItem.item);
       return studentItem;
     });
-
-    return originalStudentsArray;
   };
 
   // Добавляем обработчик события для кнопки сброса сортировки
@@ -434,7 +505,18 @@
     // Добавляем каждого студента из массива newArr в список listAddStudents
     newArr.forEach(student => {
       let studentItem = getStudentItem(student);
+
+      // кнопка удаления студента обработчик события
+      studentItem.btnDeleteStudent.addEventListener("click", function () {
+        if (confirm("Вы уверены?")) {
+          studentItem.item.remove();
+          studentRemoveObj(arr, student);
+        }
+      });
+
       listAddStudents.append(studentItem.item);
+
+      return studentItem;
     });
 
     return newArr;
@@ -452,7 +534,7 @@
       });
       sortBtnReset.disabled = false;
 
-       // Отменяем действие по умолчанию
+      // Отменяем действие по умолчанию
       e.preventDefault()
     } else {
       // Если хотя бы одно значение не пустое, то отключаем все кнопки сортировки

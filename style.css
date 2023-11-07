@@ -145,6 +145,7 @@ h2 {
 }
 
 .item__not-first {
+  position: relative;
   margin-bottom: 3px;
   border: 1px solid slategray;
   border-radius: 5px;
@@ -153,6 +154,56 @@ h2 {
 
 .item__not-first:last-child {
   margin: 0;
+}
+
+.btn__delete-student {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  color: #000;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn__delete-student::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: rotate(45deg);
+  width: 30px;
+  height: 3px;
+  background-color: red;
+}
+
+.btn__delete-student::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: rotate(-45deg);
+  width: 30px;
+  height: 3px;
+  background-color: red;
+}
+
+.btn__delete-student:hover::before,
+.btn__delete-student:hover::after {
+  background-color: black;
+}
+
+.btn__delete-student:focus {
+  outline: none;
+}
+
+.btn__delete-student:hover::before,
+.btn__delete-student:active::after {
+  background-color: black;
 }
 
 .error-message {
